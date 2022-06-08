@@ -1,3 +1,4 @@
+
 let ipAddressInputEl = document.getElementById("ipAddressInput")
 let searchButtonEl = document.getElementById("searchButton")
 
@@ -8,7 +9,8 @@ let locationEl = document.getElementById("location")
 let timezoneEl = document.getElementById("timezone")
 let ispEl = document.getElementById("isp")
 
-let url = "https://geo.ipify.org/api/v2/country,city,vpn?apiKey=at_7V3CzjZQOK4Lytv9jUHm8aqz628n2&ipAddress="
+let apiKey = config.apiKey
+const url = `https://geo.ipify.org/api/v2/country,city,vpn?apiKey=${apiKey}&ipAddress=`
 
 function findingLocation(lat, lng){
     var map = L.map('map').setView([lat, lng], 15);
@@ -52,8 +54,6 @@ function displayResults(urll){
             locationEl.textContent = `${data.location.city}, ${data.location.region}, ${data.location.country}`
             timezoneEl.textContent = `UTC ${data.location.timezone}`
             ispEl.textContent = data.isp
-
-            console.log(data.proxy)
 
             findingLocation(data.location.lat, data.location.lng)
         })
